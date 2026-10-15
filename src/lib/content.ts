@@ -36,7 +36,7 @@ export type ScheduleItem = {
   timestamp?: string;
   presenter: string;
   program?: string;
-  venue: string;
+  venue?: string;
   address?: string;
   mapUrl?: string;
   time: string;
