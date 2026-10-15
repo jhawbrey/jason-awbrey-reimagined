@@ -22,17 +22,22 @@ export const Route = createFileRoute("/schedule")({
 
 function Row({ item }: { item: ScheduleItem }) {
   return (
-    <li className="grid gap-3 border-b border-border py-8 md:grid-cols-12 md:gap-8">
+    <li
+      key={item.timestamp ?? `${item.date}-${item.program ?? item.venue}`}
+      className="grid gap-3 border-b border-border py-8 md:grid-cols-12 md:gap-8"
+    >
       <div className="md:col-span-3">
         <p className="font-display text-2xl text-foreground">{item.date}</p>
-        <p className="mt-1 text-sm text-muted-foreground">{item.time}</p>
+        {item.time && <p className="mt-1 text-sm text-muted-foreground">{item.time}</p>}
       </div>
       <div className="md:col-span-6">
         <p className="text-[0.7rem] uppercase tracking-[0.24em] text-accent">
           {item.presenter}
         </p>
-        <p className="mt-2 font-display text-xl text-foreground">{item.program}</p>
-        <p className="mt-1 text-sm text-muted-foreground">{item.venue}</p>
+        {item.program && (
+          <p className="mt-2 font-display text-xl text-foreground">{item.program}</p>
+        )}
+        {item.venue && <p className="mt-1 text-sm text-muted-foreground">{item.venue}</p>}
         {item.address &&
           (item.mapUrl ? (
             <a
@@ -87,7 +92,7 @@ function SchedulePage() {
         </h2>
         <ul className="mt-4 border-t border-border">
           {upcomingConcerts.map((c) => (
-            <Row key={`${c.date}-${c.program}`} item={c} />
+            <Row key={c.timestamp ?? `${c.date}-${c.program ?? c.venue}`} item={c} />
           ))}
         </ul>
       </section>
@@ -101,7 +106,7 @@ function SchedulePage() {
         </h2>
         <ul className="mt-4 border-t border-border">
           {pastConcerts.map((c) => (
-            <Row key={`${c.date}-${c.program}`} item={c} />
+            <Row key={c.timestamp ?? `${c.date}-${c.program ?? c.venue}`} item={c} />
           ))}
         </ul>
       </section>
