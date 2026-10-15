@@ -39,7 +39,7 @@ export type ScheduleItem = {
   venue?: string;
   address?: string;
   mapUrl?: string;
-  time: string;
+  time?: string;
   link?: string;
 };
 

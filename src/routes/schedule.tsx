@@ -28,7 +28,7 @@ function Row({ item }: { item: ScheduleItem }) {
     >
       <div className="md:col-span-3">
         <p className="font-display text-2xl text-foreground">{item.date}</p>
-        <p className="mt-1 text-sm text-muted-foreground">{item.time}</p>
+        {item.time && <p className="mt-1 text-sm text-muted-foreground">{item.time}</p>}
       </div>
       <div className="md:col-span-6">
         <p className="text-[0.7rem] uppercase tracking-[0.24em] text-accent">
