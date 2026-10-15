@@ -47,8 +47,8 @@ function Index() {
             </h1>
             <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground">
               Heralded as having “one of the most gorgeous baritones on earth” by
-              the Dallas Morning News, Jason Awbrey performs repertoire spanning
-              the early Renaissance through the 21st century across the United
+              the Dallas Morning News, Jason Awbrey performs repertoire spanning 
+              from the Medieval period through the 21st century across the United
               States, Mexico, and Europe.
             </p>
             <div className="mt-10 flex flex-wrap gap-3">
