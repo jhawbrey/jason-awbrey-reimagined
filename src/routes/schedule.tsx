@@ -37,7 +37,7 @@ function Row({ item }: { item: ScheduleItem }) {
         {item.program && (
           <p className="mt-2 font-display text-xl text-foreground">{item.program}</p>
         )}
-        <p className="mt-1 text-sm text-muted-foreground">{item.venue}</p>
+        {item.venue && <p className="mt-1 text-sm text-muted-foreground">{item.venue}</p>}
         {item.address &&
           (item.mapUrl ? (
             <a
