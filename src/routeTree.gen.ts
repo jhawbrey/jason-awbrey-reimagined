@@ -9,31 +9,16 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as ListenRouteImport } from './routes/listen'
-import { Route as PressRouteImport } from './routes/press'
-import { Route as ScheduleRouteImport } from './routes/schedule'
-import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as WatchRouteImport } from './routes/watch'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as ScheduleRouteImport } from './routes/schedule'
+import { Route as PressRouteImport } from './routes/press'
+import { Route as ListenRouteImport } from './routes/listen'
+import { Route as IndexRouteImport } from './routes/index'
 
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ListenRoute = ListenRouteImport.update({
-  id: '/listen',
-  path: '/listen',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PressRoute = PressRouteImport.update({
-  id: '/press',
-  path: '/press',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ScheduleRoute = ScheduleRouteImport.update({
-  id: '/schedule',
-  path: '/schedule',
+const WatchRoute = WatchRouteImport.update({
+  id: '/watch',
+  path: '/watch',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
@@ -41,9 +26,24 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
-const WatchRoute = WatchRouteImport.update({
-  id: '/watch',
-  path: '/watch',
+const ScheduleRoute = ScheduleRouteImport.update({
+  id: '/schedule',
+  path: '/schedule',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PressRoute = PressRouteImport.update({
+  id: '/press',
+  path: '/press',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ListenRoute = ListenRouteImport.update({
+  id: '/listen',
+  path: '/listen',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -75,7 +75,12 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/listen' | '/press' | '/schedule' | '/sitemap.xml' | '/watch'
+    | '/'
+    | '/listen'
+    | '/press'
+    | '/schedule'
+    | '/sitemap.xml'
+    | '/watch'
   fileRoutesByTo: FileRoutesByTo
   to: '/' | '/listen' | '/press' | '/schedule' | '/sitemap.xml' | '/watch'
   id:
@@ -99,32 +104,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/listen': {
-      id: '/listen'
-      path: '/listen'
-      fullPath: '/listen'
-      preLoaderRoute: typeof ListenRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/press': {
-      id: '/press'
-      path: '/press'
-      fullPath: '/press'
-      preLoaderRoute: typeof PressRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/schedule': {
-      id: '/schedule'
-      path: '/schedule'
-      fullPath: '/schedule'
-      preLoaderRoute: typeof ScheduleRouteImport
+    '/watch': {
+      id: '/watch'
+      path: '/watch'
+      fullPath: '/watch'
+      preLoaderRoute: typeof WatchRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sitemap.xml': {
@@ -134,11 +118,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/watch': {
-      id: '/watch'
-      path: '/watch'
-      fullPath: '/watch'
-      preLoaderRoute: typeof WatchRouteImport
+    '/schedule': {
+      id: '/schedule'
+      path: '/schedule'
+      fullPath: '/schedule'
+      preLoaderRoute: typeof ScheduleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/press': {
+      id: '/press'
+      path: '/press'
+      fullPath: '/press'
+      preLoaderRoute: typeof PressRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/listen': {
+      id: '/listen'
+      path: '/listen'
+      fullPath: '/listen'
+      preLoaderRoute: typeof ListenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
