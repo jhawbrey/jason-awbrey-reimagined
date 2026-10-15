@@ -179,9 +179,11 @@ function Index() {
               <p className="mt-1 text-sm text-muted-foreground">{next.time}</p>
             </div>
             <div className="md:col-span-2">
-              <p className="font-display text-2xl text-foreground">{next.program}</p>
+              <p className="font-display text-2xl text-foreground">
+                {next.program ?? next.venue}
+              </p>
               <p className="mt-2 text-sm text-muted-foreground">
-                {next.presenter} · {next.venue}
+                {next.program ? `${next.presenter} · ${next.venue}` : next.presenter}
               </p>
               <Link
                 to="/schedule"
