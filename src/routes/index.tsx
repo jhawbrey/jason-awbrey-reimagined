@@ -79,7 +79,7 @@ function Index() {
                 loading="eager"
               />
               <figcaption className="mt-3 text-xs text-muted-foreground">
-                Photograph © Jason Awbrey
+                Photograph © Richard Hill
               </figcaption>
             </figure>
           </div>
