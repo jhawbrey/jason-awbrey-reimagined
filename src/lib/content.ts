@@ -196,5 +196,4 @@ export const pastConcerts: ScheduleItem[] = [
   { date: "Sep 11, 2016", timestamp: "2016-09-11T00:00-05:00", presenter: "Vox Humana", venue: "Preston Hollow Presbyterian Church", address: "Dallas, TX", time: "8:00 PM" },
   { date: "Jul 23, 2016", timestamp: "2016-07-23T20:00-05:00", presenter: "Conspirare", program: "Olavsfestdagene", venue: "Norway", address: "Trondheim, Norway", time: "8:00 PM", link: "http://conspirare.org" },
 ];
-export const heroImage =
-  "https://jasonawbrey.com/static/e99e1fc794289686c76534671b1f8319/b3547/jasonawbrey-sq-hp.jpg";
+export const heroImage = "/__l5e/assets-v1/168c85b6-b19b-418b-af8e-baa06d52def9/jasonawbrey-sq-hp.jpg";
