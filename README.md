@@ -45,7 +45,7 @@ src/
 │   ├── listen.tsx         # Custom SoundCloud audio player
 │   ├── schedule.tsx       # Upcoming & past concerts
 │   ├── press.tsx          # Reviews and quotes
-│   └── sitemap[.]xml.ts   # Dynamic sitemap
+│   └── (sitemap served from public/sitemap.xml — no route needed)
 ├── components/
 │   ├── ui/                # shadcn/ui primitives
 │   ├── SiteHeader.tsx     # Nav + skip-to-content link
@@ -101,6 +101,7 @@ The dev server starts on `http://localhost:8080` by default (configured by `@lov
 | `bun run dev`      | Start the Vite dev server with HMR                            |
 | `bun run build`    | Production build (Cloudflare Worker output)                   |
 | `bun run build:dev`| Development-mode build (prerender check)                      |
+| `bun run build:static` | Fully static build for GitHub Pages (`.output/public`)    |
 | `bun run preview`  | Preview the production build locally                          |
 | `bun run lint`     | Run ESLint                                                    |
 | `bun run format`   | Format the codebase with Prettier                             |
@@ -136,7 +137,38 @@ All site content (videos, audio tracks, concerts, press quotes) lives in `src/li
 
 ## Deployment
 
-The app builds to a Cloudflare Worker (`wrangler.jsonc`). After `bun run build`, the output in `dist/` can be deployed with `wrangler deploy` or via the Lovable publish flow.
+### GitHub Pages (automatic on merge to `main`)
+
+`.github/workflows/deploy.yml` builds the site as static HTML (every route
+prerendered) and publishes it to GitHub Pages whenever `main` is updated.
+
+One-time setup in the GitHub repository:
+
+1. **Settings → Pages → Build and deployment → Source**: choose
+   **GitHub Actions**.
+2. **Settings → Pages → Custom domain**: enter `jasonawbrey.com` and follow the
+   DNS instructions (a `CNAME` record pointing `www` at
+   `<user>.github.io`, or an `A`/`ALIAS` record for the apex domain at
+   GitHub Pages' IPs). The deploy also ships a `CNAME` file so the domain
+   persists.
+3. Enable **Enforce HTTPS** once the certificate is issued.
+
+The workflow:
+
+- Installs dependencies with Bun (`bun.lock`)
+- Runs `bun run build:static` — sets `STATIC_BUILD=1`, which switches
+  `vite.config.ts` to prerender `/`, `/watch`, `/listen`, `/schedule`, and
+  `/press` to `.output/public/<route>/index.html`
+- Adds `404.html` (SPA fallback for unknown URLs), `.nojekyll`, and `CNAME`
+- Publishes `.output/public` with `actions/deploy-pages`
+
+You can also trigger a deploy manually from the **Actions** tab
+(*Run workflow*).
+
+### Lovable / Cloudflare (unchanged)
+
+The app still builds to a Cloudflare Worker (`wrangler.jsonc`) for the Lovable
+preview/publish flow; `STATIC_BUILD` is ignored there.
 
 ## License
 
