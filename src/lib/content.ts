@@ -1,12 +1,15 @@
+// Ordered newest-first by YouTube upload date
 export const videos = [
-  { id: "AirW84B__8w", title: "J.S. Bach — BWV 62: Streite, siege, starker Held!", work: "Cantata BWV 62" },
-  { id: "9BzHd4A7NX8", title: "J.S. Bach — BWV 147: Ich will von Jesu Wundern singen", work: "Cantata BWV 147" },
-  { id: "AKTF9cXYHyU", title: "J.S. Bach — BWV 10: Gewaltige stößt Gott vom Stuhl", work: "Cantata BWV 10" },
-  { id: "DgD3IcJ5f70", title: "J.S. Bach — BWV 140: Duet, Wenn kömmst du, mein Heil?", work: "Cantata BWV 140" },
-  { id: "PUMDgL8aYwY", title: "J.S. Bach — BWV 12: Ich folge Christo nach", work: "Cantata BWV 12" },
-  { id: "TDtxYN-UJAQ", title: "J.S. Bach — BWV 147: Verstockung kann Gewaltige verblenden", work: "Cantata BWV 147" },
+  { id: "b1mo99wVjEI", title: "J.S. Bach — BWV 106: Heute wirst du mit mir", work: "Cantata BWV 106 (Actus Tragicus)" },
+  { id: "ykVF8WFAsEw", title: "J.S. Bach — BWV 159: Es ist vollbracht", work: "Cantata BWV 159" },
   { id: "dIa5ngCVYQM", title: "J.S. Bach — BWV 140: So geh herein zu mir / Mein freund ist mein", work: "Cantata BWV 140" },
+  { id: "DgD3IcJ5f70", title: "J.S. Bach — BWV 140: Duet, Wenn kömmst du, mein Heil?", work: "Cantata BWV 140" },
+  { id: "9BzHd4A7NX8", title: "J.S. Bach — BWV 147: Ich will von Jesu Wundern singen", work: "Cantata BWV 147" },
+  { id: "TDtxYN-UJAQ", title: "J.S. Bach — BWV 147: Verstockung kann Gewaltige verblenden", work: "Cantata BWV 147" },
+  { id: "AKTF9cXYHyU", title: "J.S. Bach — BWV 10: Gewaltige stößt Gott vom Stuhl", work: "Cantata BWV 10" },
+  { id: "PUMDgL8aYwY", title: "J.S. Bach — BWV 12: Ich folge Christo nach", work: "Cantata BWV 12" },
   { id: "u8olVxODht4", title: "J.S. Bach — BWV 78: Die Wunden, Nägel, Kron / Nun du wirst mein Gewissen stillen", work: "Cantata BWV 78" },
+  { id: "AirW84B__8w", title: "J.S. Bach — BWV 62: Streite, siege, starker Held!", work: "Cantata BWV 62" },
 ] as const;
 
 export const tracks = [
