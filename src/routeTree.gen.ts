@@ -13,7 +13,6 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ListenRouteImport } from './routes/listen'
 import { Route as PressRouteImport } from './routes/press'
 import { Route as ScheduleRouteImport } from './routes/schedule'
-import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as WatchRouteImport } from './routes/watch'
 
 const IndexRoute = IndexRouteImport.update({
@@ -36,11 +35,6 @@ const ScheduleRoute = ScheduleRouteImport.update({
   path: '/schedule',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
-  id: '/sitemap.xml',
-  path: '/sitemap.xml',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const WatchRoute = WatchRouteImport.update({
   id: '/watch',
   path: '/watch',
@@ -52,7 +46,6 @@ export interface FileRoutesByFullPath {
   '/listen': typeof ListenRoute
   '/press': typeof PressRoute
   '/schedule': typeof ScheduleRoute
-  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/watch': typeof WatchRoute
 }
 export interface FileRoutesByTo {
@@ -60,7 +53,6 @@ export interface FileRoutesByTo {
   '/listen': typeof ListenRoute
   '/press': typeof PressRoute
   '/schedule': typeof ScheduleRoute
-  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/watch': typeof WatchRoute
 }
 export interface FileRoutesById {
@@ -69,23 +61,14 @@ export interface FileRoutesById {
   '/listen': typeof ListenRoute
   '/press': typeof PressRoute
   '/schedule': typeof ScheduleRoute
-  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/watch': typeof WatchRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    '/' | '/listen' | '/press' | '/schedule' | '/sitemap.xml' | '/watch'
+  fullPaths: '/' | '/listen' | '/press' | '/schedule' | '/watch'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/listen' | '/press' | '/schedule' | '/sitemap.xml' | '/watch'
-  id:
-    | '__root__'
-    | '/'
-    | '/listen'
-    | '/press'
-    | '/schedule'
-    | '/sitemap.xml'
-    | '/watch'
+  to: '/' | '/listen' | '/press' | '/schedule' | '/watch'
+  id: '__root__' | '/' | '/listen' | '/press' | '/schedule' | '/watch'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -93,7 +76,6 @@ export interface RootRouteChildren {
   ListenRoute: typeof ListenRoute
   PressRoute: typeof PressRoute
   ScheduleRoute: typeof ScheduleRoute
-  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   WatchRoute: typeof WatchRoute
 }
 
@@ -127,13 +109,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ScheduleRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/sitemap.xml': {
-      id: '/sitemap.xml'
-      path: '/sitemap.xml'
-      fullPath: '/sitemap.xml'
-      preLoaderRoute: typeof SitemapDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/watch': {
       id: '/watch'
       path: '/watch'
@@ -149,7 +124,6 @@ const rootRouteChildren: RootRouteChildren = {
   ListenRoute: ListenRoute,
   PressRoute: PressRoute,
   ScheduleRoute: ScheduleRoute,
-  SitemapDotxmlRoute: SitemapDotxmlRoute,
   WatchRoute: WatchRoute,
 }
 export const routeTree = rootRouteImport
