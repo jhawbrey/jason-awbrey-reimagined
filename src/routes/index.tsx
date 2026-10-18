@@ -32,7 +32,7 @@ function Index() {
     <>
       {/* Hero */}
       <section aria-labelledby="hero-heading" className="relative overflow-hidden">
-        <div className="mx-auto grid max-w-6xl gap-12 px-6 pb-20 pt-12 md:grid-cols-12 md:pb-28 md:pt-20">
+        <div className="mx-auto grid max-w-6xl gap-10 px-6 pb-16 pt-10 md:grid-cols-12 md:gap-12 md:pb-28 md:pt-20">
           <div className="md:col-span-7 md:pt-8">
             <p className="text-[0.7rem] uppercase tracking-[0.32em] text-accent">
               Baritone · Dallas, Texas
@@ -67,9 +67,9 @@ function Index() {
               </Link>
             </div>
           </div>
-          <div className="md:col-span-5">
+          <div className="mx-auto w-full max-w-[13rem] md:col-span-5 md:max-w-none">
             <figure className="relative">
-              <div className="absolute -inset-4 -z-10 rounded-sm bg-accent/10" aria-hidden />
+              <div className="absolute -inset-3 -z-10 rounded-sm bg-accent/10 md:-inset-4" aria-hidden />
               <img
                 src={heroImage}
                 alt="Portrait of baritone Jason Awbrey, seated in a black jacket, in black and white."
