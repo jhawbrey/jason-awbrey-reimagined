@@ -5,6 +5,8 @@ import { tracks } from "@/lib/content";
 export const Route = createFileRoute("/listen")({
   head: () => ({
     meta: [
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { title: "Listen — Jason Awbrey, Baritone" },
       {
         name: "description",

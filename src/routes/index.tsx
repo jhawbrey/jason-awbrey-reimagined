@@ -18,7 +18,8 @@ export const Route = createFileRoute("/")({
         content:
           "Vocal soloist and choral artist. Watch performances, hear recordings, and view the upcoming concert calendar.",
       },
-      { property: "og:image", content: heroImage },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Index,
