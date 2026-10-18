@@ -7,7 +7,7 @@ export function AudioGrid({ tracks }: { tracks: ReadonlyArray<Track> }) {
         const url = `https://soundcloud.com/jason-awbrey/${t.slug}`;
         const src =
           `https://w.soundcloud.com/player/?url=${encodeURIComponent(url)}` +
-          "&color=%23a1782d&inverse=false&auto_play=false&show_user=false&show_reposts=false&show_teaser=false&visual=false&hide_related=true";
+          "&color=%239d4700&inverse=false&auto_play=false&show_user=false&show_reposts=false&show_teaser=false&visual=false&hide_related=true";
         return (
           <li key={t.slug} className="group rounded-sm border border-border bg-card p-5 transition-colors hover:border-accent">
             <p className="text-[0.7rem] uppercase tracking-[0.24em] text-muted-foreground">
