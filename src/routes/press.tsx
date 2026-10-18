@@ -4,6 +4,8 @@ import { quotes } from "@/lib/content";
 export const Route = createFileRoute("/press")({
   head: () => ({
     meta: [
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { title: "Press — Jason Awbrey, Baritone" },
       {
         name: "description",
