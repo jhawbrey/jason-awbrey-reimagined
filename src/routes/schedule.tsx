@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { pastConcerts, upcomingConcerts, type ScheduleItem } from "@/lib/content";
+import { getPastConcerts, getUpcomingConcerts, type ScheduleItem } from "@/lib/content";
 
 export const Route = createFileRoute("/schedule")({
   head: () => ({
@@ -74,6 +74,8 @@ function Row({ item }: { item: ScheduleItem }) {
 }
 
 function SchedulePage() {
+  const upcomingConcerts = getUpcomingConcerts();
+  const pastConcerts = getPastConcerts();
   return (
     <div className="mx-auto max-w-6xl px-6 py-20">
       <header className="max-w-2xl">
