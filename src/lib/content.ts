@@ -46,7 +46,10 @@ export type ScheduleItem = {
   link?: string;
 };
 
-export const upcomingConcerts: ScheduleItem[] = [
+// All engagements, past and future, in a single list. The Upcoming and Past
+// sections are derived automatically from each item's timestamp — add new
+// concerts here and never move items between lists by hand.
+const schedule: ScheduleItem[] = [
   { date: "Oct 22, 2026", timestamp: "2026-10-22T19:30-06:00", presenter: "UTA Faculty Recital", program: "Schubert: Auf dem Strom", venue: "Irons Recital Hall", address: "700 Greek Row Drive, Arlington, TX", mapUrl: "https://maps.app.goo.gl/2VqkUQCtWJsdpRtT6", time: "07:30 PM" },
   { date: "Nov 02, 2026", timestamp: "2026-11-02T19:00-05:00", presenter: "Transfigured Nights", program: "Duruflé Requiem", venue: "Church of the Transfiguration", address: "14115 Hillcrest Rd, Dallas, TX", time: "7:00 PM", link: "http://transfiguration.net" },
   { date: "Dec 01, 2026", timestamp: "2026-12-01T12:15-06:00", presenter: "Bach\'s Lunch", program: "Bach, BWV 36", venue: "Church of the Incarnation", address: "3966 McKinney Ave, Dallas, TX", mapUrl: "https://maps.app.goo.gl/3yx8kPvfQdaHHWFU6", time: "12:15 PM" },
@@ -57,7 +60,6 @@ export const upcomingConcerts: ScheduleItem[] = [
   { date: "April 11, 2027", timestamp: "2027-04-11T15:00-06:00", presenter: "Vox Seraphim", program: "Handel: Messiah", venue: "St Alban\'s Episcopal Church", address: "305 N 30th St, Waco, TX", mapUrl: "https://maps.app.goo.gl/BGJ8x9eR4ZhFH4kp9", time: "03:00 PM", link: "https://www.stalbanswaco.org/music/sacredarts/" },
 ];
 
-export const pastConcerts: ScheduleItem[] = [
   { date: "Oct 11, 2026", timestamp: "2026-10-11T15:00:00Z", presenter: "Harmonia Stellarum", program: "Early Baroque Polyphony", venue: "First Lutheran Church", address: "1311 Holman St, Houston, TX", mapUrl: "https://www.google.com/maps/search/?api=1&query=First+Lutheran+Church+1311+Holman+St+Houston+TX+United+States", time: "3:00 PM" },
   { date: "June 06, 2026", timestamp: "2026-06-06T19:30-06:00", presenter: "Charlotte Bach Festival", program: "Handel’s Theodora", venue: "Sandra Levine Theatre, Gambrell Center, Queens University of Charlotte", address: "2319 Wellesley Avenue, Charlotte, NC", mapUrl: "https://maps.app.goo.gl/rruVofXaGRMdy2q48", time: "07:30 PM", link: "https://bacharlotte.com/charlottebachfestival/handel-theodora" },
   { date: "June 04, 2026", timestamp: "2026-06-04T12:00-06:00", presenter: "Charlotte Bach Festival", program: "GF Handel: My song shall be alway, HWV 252", venue: "Myers Park Presbyterian Church", address: "2501 Oxford Place, Charlotte, NC", mapUrl: "https://maps.app.goo.gl/nLGDCC7hoUtDjgk2A", time: "12:00 PM", link: "https://bacharlotte.com/charlottebachfestival/tuning-in-handel-anthem-252" },
@@ -196,4 +198,22 @@ export const pastConcerts: ScheduleItem[] = [
   { date: "Sep 11, 2016", timestamp: "2016-09-11T00:00-05:00", presenter: "Vox Humana", venue: "Preston Hollow Presbyterian Church", address: "Dallas, TX", time: "8:00 PM" },
   { date: "Jul 23, 2016", timestamp: "2016-07-23T20:00-05:00", presenter: "Conspirare", program: "Olavsfestdagene", venue: "Norway", address: "Trondheim, Norway", time: "8:00 PM", link: "http://conspirare.org" },
 ];
+
+const byTimestamp = (item: ScheduleItem) =>
+  item.timestamp ? new Date(item.timestamp).getTime() : 0;
+
+/** Future engagements, soonest first. Split is evaluated against `now`. */
+export function getUpcomingConcerts(now: Date = new Date()): ScheduleItem[] {
+  return schedule
+    .filter((c) => c.timestamp && new Date(c.timestamp) > now)
+    .sort((a, b) => byTimestamp(a) - byTimestamp(b));
+}
+
+/** Past engagements, most recent first. */
+export function getPastConcerts(now: Date = new Date()): ScheduleItem[] {
+  return schedule
+    .filter((c) => !c.timestamp || new Date(c.timestamp) <= now)
+    .sort((a, b) => byTimestamp(b) - byTimestamp(a));
+}
+
 export const heroImage = "/images/jasonawbrey-sq-hp.jpg";
