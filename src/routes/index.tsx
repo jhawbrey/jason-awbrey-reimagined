@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
 import { getUpcomingConcerts, heroImage, quotes, videos } from "@/lib/content";
 import { VideoGrid } from "@/components/VideoPlayer";
+import { useNow } from "@/hooks/use-now";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -27,7 +28,8 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   const featured = videos.slice(0, 3);
-  const next = getUpcomingConcerts()[0];
+  const now = useNow();
+  const next = getUpcomingConcerts(now)[0];
   const pullQuote = quotes[0];
   return (
     <>
